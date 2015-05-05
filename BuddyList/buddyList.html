@@ -3,16 +3,224 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Buddy List</title>
-    <script src="bower_components/angular/angular.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="override.css" />
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
     <script>
         angular.module('myApp',[]).controller('MyController', function ($scope){
             $scope.message = 'Welcome to Buddy List';
+            var list = {
+                "people": [
+                            {
+                                "username": "rashmika23",
+                                "firstname": "Rashmika",
+                                "lastname": "Kallepu",
+                                "status": "Available",
+                                "moreInfo": {
+                                    "emailAddress":"rashmika@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "23rd April 1990",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "radhika14",
+                                "firstname": "Radhika",
+                                "lastname": "Sastry",
+                                "status": "Idle",
+                                "moreInfo": {
+                                    "emailAddress":"radhika@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "23rd April 1990",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "rithesh04",
+                                "firstname": "Rithesh",
+                                "lastname": "Kallepu",
+                                "status": "Busy",
+                                "moreInfo": {
+                                    "emailAddress":"rithesh@golivelabs.com",
+                                    "address": "780 South Mathilda Avenue, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "4th Dec 2000",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "vavo",
+                                "firstname": "Varun",
+                                "lastname": "Voddi",
+                                "status": "Away",
+                                "moreInfo": {
+                                    "emailAddress":"vavo@golivelabs.com",
+                                    "address": "607 Historic Murphy Avenue, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "24th June 1984",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "amunugal",
+                                "firstname": "Apoorva",
+                                "lastname": "Munugala",
+                                "status": "Available",
+                                "moreInfo": {
+                                    "emailAddress":"apoorva@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "11th Feb 1989",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "ash",
+                                "firstname": "Ashish",
+                                "lastname": "Vujjeni",
+                                "status": "Offline",
+                                "moreInfo": {
+                                    "emailAddress":"ashish@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "23rd April 1983",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "bittu567",
+                                "firstname": "Anvesh",
+                                "lastname": "Rao",
+                                "status": "Away",
+                                "moreInfo": {
+                                    "emailAddress":"anvesh@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "23rd Jan 1991",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "chris007",
+                                "firstname": "Chris",
+                                "lastname": "Jyap",
+                                "status": "Available",
+                                "moreInfo": {
+                                    "emailAddress":"chrisjyap@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "23rd April 1990",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "aditya016",
+                                "firstname": "Aditya",
+                                "lastname": "Rao",
+                                "status": "Offline",
+                                "moreInfo": {
+                                    "emailAddress":"aditya@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "23rd April 1990",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+                            {
+                                "username": "nina89",
+                                "firstname": "Nina",
+                                "lastname": "Agarwal",
+                                "status": "Busy",
+                                "moreInfo": {
+                                    "emailAddress":"nina@golivelabs.com",
+                                    "address": "560 Gorman street, Sunnyvale,CA-93780",
+                                    "bioData": "hobbies: instrumental music, reading books",
+                                    "birthday": "23rd April 1990",
+                                    "lastSignInDate": "4th May 2015"
+                                }
+                            },
+            ]};
+            $scope.buddyList = list.people;
+            $scope.addBuddyForm = false;
+            $scope.confirmModal = false;
+            $scope.delBuddy = function(event, index){
+                $scope.confirmModal = true;
+                if(confirm("Are you sure you want to delete " + $scope.buddyList[index].username))
+                    $scope.buddyList.splice(index,1);
+            };
+            $scope.addBuddy = function(event){
+                $scope.addBuddyForm = true;
+            };
+            $scope.saveBuddy = function(){
+                var data = {
+                    "username": document.getElementById('username').value,
+                    "firstname": document.getElementById('firstname').value,
+                    "lastname": document.getElementById('lastname').value,
+                    "status": document.getElementById('status').value,
+                    "moreInfo":{
+                        "emailAddress": document.getElementById('email').value,
+                        "address": document.getElementById('address').value,
+                        "bioData": document.getElementById('bioData').value,
+                        "birthday": document.getElementById('birthday').value
+                    }
+                };
+                //console.log(data);
+                $scope.buddyList.push(data);
+                if(data.username && data.firstname && data.lastname && data.status && data.moreInfo.emailAddress && data.moreInfo.address && data.moreInfo.bioData && data.moreInfo.birthday)
+                    $scope.addBuddyForm = false;
+            };
         });
     </script>
 </head>
 <body>
         <div ng-controller="MyController">
-            <h1>{{message}}</h1>
+            <div class="container">
+                <div id="head_container">
+                    <h2>{{message}}</h2>
+                    <button id="addbuddy" type="button" class="btn btn-default" ng-click="addBuddy($event)">Add New Buddy</button>
+                    <div class="clear"></div>
+                </div>
+                <div ng-show="addBuddyForm" id="datacapture">
+                    <form target="_blank" id="data" >
+                        <input type="text" name="username" id="username" required placeholder="username"/><br>
+                        <input type="text" name="firstname" id="firstname" required placeholder="firstname"/><br>
+                        <input type="text" name="lastname" id="lastname" required placeholder="lastname"/><br>
+                        <input type="text" name="status" id="status" required placeholder="status"/><br>
+                        <input type="email" name="emailAddress" id="email" required placeholder="email address"/><br>
+                        <input type="text" name="address" id="address" required placeholder="address"/><br>
+                        <input type="text" name="bioData" id="bioData" required placeholder="bio data"/><br>
+                        <input type="date" name="birthday" id="birthday" required placeholder="birthday"/><br>
+                        <input type="Submit" ng-click="saveBuddy()" Value="Save Buddy" class="btn btn-default" />
+                        <!--<button type="button" class="btn btn-default" ng-click="saveBuddy($event)">Save Buddy</button>-->
+                    </form>
+                </div>
+                <div class="panel-group" id="accordion" ng-repeat="budy in buddyList">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="{{$index}}" href="#collapse{{$index}}" style="text-decoration: none;"><span style="float:left;">{{budy.firstname}}</span><span style="margin-left: 5px">{{budy.lastname}}</span><span style="float: right; margin-right:10px;">{{budy.username}}</span><span style="float: right;margin-right: 10px;">{{budy.status}}</span></a>
+                                <span style="float: right;margin-right: 10px;margin-top: -8px;"><button type="button" class="btn btn-default" ng-click="delBuddy($event, $index)">Delete</button></span>
+                            </h4>
+
+                        </div>
+                        <div id="collapse{{$index}}" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <ul style="list-style-type: none;margin:0;padding:0">
+                                    <li>Email ID: {{budy.moreInfo.emailAddress}}</li>
+                                    <li>Birthday: {{budy.moreInfo.birthday}}</li>
+                                    <li>Bio Data: {{budy.moreInfo.bioData}}</li>
+                                    <li>Address: {{budy.moreInfo.address}}</li>
+                                    <li ng-if = "budy.status ==='Offline'">Last Sign In Date: {{budy.moreInfo.lastSignInDate}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 </body>
 </html>

@@ -1,0 +1,24 @@
+div#datacapture{
+    width: 250px;
+    margin:0 auto;
+    border: 1px solid black;
+    padding: 50px;
+}
+div#datacapture form input{
+    margin-bottom: 5px;
+}
+div#datacapture form input.btn{
+    margin-left: 25px;
+}
+div button#addbuddy{
+    float:right;
+    display: block;
+    margin-bottom: 10px;
+}
+div.clear{
+    clear: both;
+}
+/*
+div#head_container{
+    width:900px;
+}*/
