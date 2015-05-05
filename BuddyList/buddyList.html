@@ -1,0 +1,18 @@
+<!Doctype html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Buddy List</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp',[]).controller('MyController', function ($scope){
+            $scope.message = 'Welcome to Buddy List';
+        });
+    </script>
+</head>
+<body>
+        <div ng-controller="MyController">
+            <h1>{{message}}</h1>
+        </div>
+</body>
+</html>
